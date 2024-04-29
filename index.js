@@ -22,8 +22,8 @@ app.get('/kategori', (req, res) => {
 });
 
 app.post('/kategori', (req, res) => {
-    const { id_kategori, nama_kategori } = req.body;
-    const values = { id_kategori, nama_kategori };
+    const { nama_kategori } = req.body;
+    const values = { nama_kategori };
 
     db.query('INSERT INTO kategori_pakaian SET ?', values, (error, result) => {
         if (error) {
@@ -36,7 +36,7 @@ app.post('/kategori', (req, res) => {
 });
 
 // Endpoint for 'produk_pakaian' table
-app.get('/pakaian', (req, res) => {
+app.get('/produk', (req, res) => {
     const sql = 'SELECT * FROM produk_pakaian';
     db.query(sql, (error, result) => {
         if (error) {
@@ -48,9 +48,9 @@ app.get('/pakaian', (req, res) => {
     });
 });
 
-app.post('/pakaian', (req, res) => {
-    const { id_produk, nama_produk, id_kategori, harga, stok } = req.body;
-    const values = { id_produk, nama_produk, id_kategori, harga, stok };
+app.post('/produk', (req, res) => {
+    const { nama_produk, id_kategori, harga, stok } = req.body;
+    const values = { nama_produk, id_kategori, harga, stok };
 
     db.query('INSERT INTO produk_pakaian SET ?', values, (error, result) => {
         if (error) {
@@ -76,8 +76,8 @@ app.get('/pesanan', (req, res) => {
 });
 
 app.post('/pesanan', (req, res) => {
-    const { id_pesanan, id_produk, id_pelanggan, tanggal_pesanan, total_harga } = req.body;
-    const values = { id_pesanan, id_produk, id_pelanggan, tanggal_pesanan, total_harga };
+    const { id_produk, id_pelanggan, tanggal_pesanan, total_harga } = req.body;
+    const values = { id_produk, id_pelanggan, tanggal_pesanan, total_harga };
 
     db.query('INSERT INTO pesanan_pakaian SET ?', values, (error, result) => {
         if (error) {
@@ -103,8 +103,8 @@ app.get('/pelanggan', (req, res) => {
 });
 
 app.post('/pelanggan', (req, res) => {
-    const { id_pelanggan, nama_pelanggan, alamat, telepon } = req.body;
-    const values = { id_pelanggan, nama_pelanggan, alamat, telepon };
+    const { nama_pelanggan, alamat, telepon } = req.body;
+    const values = { nama_pelanggan, alamat, telepon };
 
     db.query('INSERT INTO pelanggan_pakaian SET ?', values, (error, result) => {
         if (error) {
@@ -119,4 +119,3 @@ app.post('/pelanggan', (req, res) => {
 app.listen(port, () => {
     console.log(`Running on port ${port}`);
 });
-s
