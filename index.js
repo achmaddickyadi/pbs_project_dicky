@@ -8,6 +8,10 @@ const response = require('./response.js');
 
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+    res.send('<h1>Selamat Datang di Toko Pakaian!</h1>');
+});
+
 // Endpoint for 'kategori_pakaian' table
 app.get('/kategori', (req, res) => {
     const sql = 'SELECT * FROM kategori_pakaian';
